@@ -1,4 +1,7 @@
-﻿class Program
+﻿using System;
+using System.Collections.Generic;
+
+class Program
 {
     static void Main()
     {
@@ -15,20 +18,30 @@
             Console.WriteLine();
         }
 
-        // Example: Add a new customer
-        Customer newCustomer = new Customer
+        Console.WriteLine("Do you want to enter a new customer? (yes/no)");
+        string? response = Console.ReadLine();
+        if (response is not null)
         {
-            Id = 123,
-            FirstName = "John",
-            LastName = "Doe",
-            Email = "john.doe@example.com",
-            Address = "123 Main St"
-        };
+            if (response.ToLower() == "yes")
+        {
+            AddNewCustomer.AddCustomer();
+        }
+        }
+        
+        // Example: Add a new customer
+        // Customer newCustomer = new Customer
+        // {
+        //     Id = 123,
+        //     FirstName = "John",
+        //     LastName = "Doe",
+        //     Email = "john.doe@example.com",
+        //     Address = "123 Main St"
+        // };
 
-        customers.Add(newCustomer);
+        // customers.Add(newCustomer);
 
-        // Write the updated customer list to the CSV file
-        WriteCustomersToCSV(filePath, customers);
+        // // Write the updated customer list to the CSV file
+        // WriteCustomersToCSV(filePath, customers);
     }
 
     static List<Customer> ReadCustomersFromCSV(string filePath)
@@ -45,16 +58,27 @@
             {
                 string[] data = lines[i].Split(',');
 
-                Customer customer = new Customer
+                Customer customer = new Customer();
+
+                if(int.TryParse(data[0], out int id))
                 {
-                    Id = int.Parse(data[0]),
-                    FirstName = data[1],
-                    LastName = data[2],
-                    Email = data[3],
-                    Address = data[4]
+                    customer.Id = id;
+                } 
+                else {
+                    Console.WriteLine($"Invalid ID format at line {i + 1}. Skipping this customer.");
+                    continue;
+                }
+                
+                {
+                    customer.FirstName = data[1];
+                    customer.LastName = data[2];
+                    customer.Email = data[3];
+                    customer.Address = data[4];
+
+                    customers.Add(customer);
                 };
 
-                customers.Add(customer);
+                
             }
         }
 
