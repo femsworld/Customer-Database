@@ -25,15 +25,13 @@ public class AddNewCustomer
         // Create a new Customer object
         Customer newCustomer = new Customer
         {   
-            // Id = int.Parse(Id),
-            Id = int.Parse(Id),
+            Id = int.Parse(Id!),
             FirstName = firstName,
             LastName = lastName,
             Email = email,
             Address = address
         };
 
-        // Append the new customer to the customers.csv file
         AppendCustomerToCSV("customers.csv", newCustomer);
 
         Console.WriteLine("Customer added successfully!");
@@ -41,9 +39,9 @@ public class AddNewCustomer
 
     private static void AppendCustomerToCSV(string filePath, Customer customer)
     {
-        using (StreamWriter writer = new StreamWriter(filePath, true))
+        using (StreamWriter writer = new StreamWriter(filePath, true))  //change this to text based class
         {
-            writer.WriteLine($"{customer.FirstName},{customer.LastName},{customer.Email},{customer.Address}");
+            writer.WriteLine($"{customer.Id},{customer.FirstName},{customer.LastName},{customer.Email},{customer.Address}");
         }
     }
 }
