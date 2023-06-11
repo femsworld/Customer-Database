@@ -1,3 +1,5 @@
+namespace CustomerDatabase
+{
 class CustomerManager
 {
     public static void EditCustomer(List<Customer> customers, int customerId)
@@ -34,3 +36,5 @@ class CustomerManager
         }
     }
 }
+}
+

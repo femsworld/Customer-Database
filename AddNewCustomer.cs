@@ -1,6 +1,5 @@
-using System;
-using System.IO;
-
+namespace CustomerDatabase
+{
 public class AddNewCustomer
 {
     public static void AddCustomer()
@@ -44,4 +43,5 @@ public class AddNewCustomer
             writer.WriteLine($"{customer.Id},{customer.FirstName},{customer.LastName},{customer.Email},{customer.Address}");
         }
     }
+}
 }
