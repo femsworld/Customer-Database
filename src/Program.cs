@@ -11,7 +11,7 @@ namespace CustomerDatabaseSystem
             string filePath = "src/customers.csv";
             // List<Customer> customers = ReadCustomersFromCSV(filePath);
             // List<Customer> ReadCustomersFromCSV(string filePath)
-            customers = Customer.ReadCustomersFromCSV(filePath);
+            customers = FileHelper.ReadCustomersFromCSV(filePath);
             foreach (Customer customer in customers)
             {
                 Console.WriteLine($"ID: {customer.Id}");
@@ -29,7 +29,7 @@ namespace CustomerDatabaseSystem
                 if (response.ToLower() == "yes")
                 {
                     CustomerDatabase.AddCustomer(customers, filePath);
-                    customers = Customer.ReadCustomersFromCSV(filePath);
+                    customers = FileHelper.ReadCustomersFromCSV(filePath);
                 }
             }
             Console.WriteLine("Enter the ID of the customer you want to edit:");
@@ -40,7 +40,7 @@ namespace CustomerDatabaseSystem
             if (int.TryParse(customerIdInput, out int customerId))
             {
                 CustomerDatabase.EditCustomer(customers, customerId);
-                Customer.WriteCustomersToCSV(filePath, customers);
+                FileHelper.WriteCustomersToCSV(filePath, customers);
             }
             else
             {
