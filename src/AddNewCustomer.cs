@@ -42,7 +42,7 @@ public class AddNewCustomer
             Address = address
         };
 
-        AppendCustomerToCSV("customers.csv", newCustomer);
+        AppendCustomerToCSV("src/customers.csv", newCustomer);
 
         Console.WriteLine("Customer added successfully!");
     }
