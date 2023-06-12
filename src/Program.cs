@@ -9,7 +9,6 @@ namespace CustomerDatabaseSystem
         static void Main()
         {
             string filePath = "src/customers.csv";
-            // string filePath = "customers.csv";
             // List<Customer> customers = ReadCustomersFromCSV(filePath);
             // List<Customer> ReadCustomersFromCSV(string filePath)
             customers = Customer.ReadCustomersFromCSV(filePath);
@@ -29,10 +28,6 @@ namespace CustomerDatabaseSystem
             {
                 if (response.ToLower() == "yes")
                 {
-                    // AddNewCustomer.AddCustomer();
-                    // AddNewCustomer.AddCustomer(customers);
-
-                    // AddNewCustomer.AddCustomer(customers, filePath);
                     CustomerDatabase.AddCustomer(customers, filePath);
                     customers = Customer.ReadCustomersFromCSV(filePath);
                 }
@@ -44,7 +39,6 @@ namespace CustomerDatabaseSystem
 
             if (int.TryParse(customerIdInput, out int customerId))
             {
-                // CustomerManager.EditCustomer(customers, customerId);
                 CustomerDatabase.EditCustomer(customers, customerId);
                 Customer.WriteCustomersToCSV(filePath, customers);
             }
@@ -53,7 +47,7 @@ namespace CustomerDatabaseSystem
                 Console.WriteLine("Invalid customer ID. Please try again.");
             }
 
-            Console.WriteLine("Enter the ID of the customer you want to search:");  //search
+            Console.WriteLine("Enter the ID of the customer you want to search:");
             string searchIdInput = Console.ReadLine();
 
             if (int.TryParse(searchIdInput, out int searchId))
@@ -71,66 +65,9 @@ namespace CustomerDatabaseSystem
             }
             else
             {
-                Console.WriteLine("Invalid customer ID. Please try again.");   //search
+                Console.WriteLine("Invalid customer ID. Please try again."); 
             }
 
         }
-        // static List<Customer> ReadCustomersFromCSV(string filePath)
-        // {
-        //     List<Customer> customers = new List<Customer>();
-
-        //     if (File.Exists(filePath))
-        //     {
-        //         string[] lines = File.ReadAllLines(filePath);
-
-        //         for (int i = 1; i < lines.Length; i++)
-        //         {
-        //             string[] data = lines[i].Split(',');
-
-        //             Customer customer = new Customer();
-
-        //             if (int.TryParse(data[0], out int id))
-        //             {
-        //                 customer.Id = id;
-        //             }
-        //             else
-        //             {
-        //                 Console.WriteLine($"Invalid ID format at line {i + 1}. Skipping this customer.");
-        //                 continue;
-        //             }
-
-        //             {
-        //                 customer.FirstName = data[1];
-        //                 customer.LastName = data[2];
-        //                 customer.Email = data[3];
-        //                 customer.Address = data[4];
-
-        //                 customers.Add(customer);
-        //             };
-
-
-        //         }
-        //     }
-        //     return customers;
-        // }
-        // static void WriteCustomersToCSV(string filePath, List<Customer> customers)
-        // {
-        //     using (StreamWriter writer = new StreamWriter(filePath))
-        //     {
-        //         writer.WriteLine("ID,First Name,Last Name,Email,Address");
-
-        //         foreach (Customer customer in customers)
-        //         {
-        //             writer.WriteLine($"{customer.Id},{customer.FirstName},{customer.LastName},{customer.Email},{customer.Address}");
-        //         }
-        //     }
-        // }
-
-        // static Customer SearchCustomerById(List<Customer> customers, int customerId)
-        // {   
-        //     Customer foundCustomer = customers.Find(customer => customer.Id == customerId);
-        //     return foundCustomer;
-        // }
-
     }
 }
