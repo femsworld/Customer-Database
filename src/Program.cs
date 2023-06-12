@@ -1,6 +1,6 @@
 ﻿#nullable disable
 
-namespace CustomerDatabase
+namespace CustomerDatabaseSystem
 {
 
     class Program
@@ -30,7 +30,8 @@ namespace CustomerDatabase
                     // AddNewCustomer.AddCustomer();
                     // AddNewCustomer.AddCustomer(customers);
 
-                    AddNewCustomer.AddCustomer(customers, filePath);
+                    // AddNewCustomer.AddCustomer(customers, filePath);
+                    CustomerDatabase.AddCustomer(customers, filePath);
                     customers = ReadCustomersFromCSV(filePath);
                 }
             }
@@ -41,7 +42,8 @@ namespace CustomerDatabase
 
             if (int.TryParse(customerIdInput, out int customerId))
             {
-                CustomerManager.EditCustomer(customers, customerId);
+                // CustomerManager.EditCustomer(customers, customerId);
+                CustomerDatabase.EditCustomer(customers, customerId);
                 WriteCustomersToCSV(filePath, customers);
             }
             else
